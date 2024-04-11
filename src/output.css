@@ -41,44 +41,5 @@
     padding: 10px;
     background: #C13A99;
     color: white;
-  
-  
-    &:after {
-      font-family: 'FontAwesome';
-      content: '\f107';
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      display: block;
-      transition: transform 300ms;
-    }
-  
-    &.is-open {
-      &:after {
-        transform: rotateZ(180deg);
-      }
-    }
-  
-    &.is-disabled {
-      opacity: 0.5;
-      background-color: grey;
-    }
   }
   
-  .CustomTriggerCSS {
-    background-color: lightcoral;
-    transition: background-color 200ms ease;
-    
-    
-  }
-  
-  .CustomTriggerCSS--open {
-    background-color: darkslateblue;
-  }
-  
-  .Collapsible__custom-sibling {
-    padding: 5px;
-    font-size: 12px;
-    background-color: #CBB700;
-    color: black;
-  }
