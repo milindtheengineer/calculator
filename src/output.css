@@ -1,0 +1,27 @@
+.output {
+    /* Encapsulating the CSS rules within the .home-form selector */
+    * {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+    font-family: 'Nunito', sans-serif;
+    color: #384047;
+    max-width: 440px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+  }
+
+  .value-cell {
+    font-family: 'Nunito', sans-serif;
+    color: #384047;
+    margin: 10px auto;
+    padding: 10px auto;
+  }
+
+  .value-cell h3 {
+    font-size: 16px;
+  }

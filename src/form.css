@@ -1,15 +1,16 @@
-*, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  body {
+.home-form {
+    /* Encapsulating the CSS rules within the .home-form selector */
+    * {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
     font-family: 'Nunito', sans-serif;
     color: #384047;
   }
   
-  form {
+  .home-form form {
     max-width: 300px;
     margin: 10px auto;
     padding: 10px 20px;
@@ -17,23 +18,18 @@
     border-radius: 8px;
   }
   
-  h1 {
-    margin: 0 0 30px 0;
-    text-align: center;
-  }
-  
-  input[type="text"],
-  input[type="password"],
-  input[type="date"],
-  input[type="datetime"],
-  input[type="email"],
-  input[type="number"],
-  input[type="search"],
-  input[type="tel"],
-  input[type="time"],
-  input[type="url"],
-  textarea,
-  select {
+  .home-form input[type="text"],
+  .home-form input[type="password"],
+  .home-form input[type="date"],
+  .home-form input[type="datetime"],
+  .home-form input[type="email"],
+  .home-form input[type="number"],
+  .home-form input[type="search"],
+  .home-form input[type="tel"],
+  .home-form input[type="time"],
+  .home-form input[type="url"],
+  .home-form textarea,
+  .home-form select {
     background: rgba(255,255,255,0.1);
     border: none;
     font-size: 16px;
@@ -48,18 +44,18 @@
     margin-bottom: 30px;
   }
   
-  input[type="radio"],
-  input[type="checkbox"] {
+  .home-form input[type="radio"],
+  .home-form input[type="checkbox"] {
     margin: 0 4px 8px 0;
   }
   
-  select {
+  .home-form select {
     padding: 6px;
     height: 32px;
     border-radius: 2px;
   }
   
-  button {
+  .home-form button {
     padding: 19px 39px 18px 39px;
     color: #FFF;
     background-color: #4bc970;
@@ -74,27 +70,27 @@
     margin-bottom: 10px;
   }
   
-  fieldset {
+  .home-form fieldset {
     margin-bottom: 30px;
     border: none;
   }
   
-  legend {
+  .home-form legend {
     font-size: 1.4em;
     margin-bottom: 10px;
   }
   
-  label {
+  .home-form label {
     display: block;
     margin-bottom: 8px;
   }
   
-  label.light {
+  .home-form label.light {
     font-weight: 300;
     display: inline;
   }
   
-  .number {
+  .home-form .number {
     background-color: #5fcf80;
     color: #fff;
     height: 30px;
@@ -109,10 +105,8 @@
   }
   
   @media screen and (min-width: 480px) {
-  
-    form {
+    .home-form form {
       max-width: 480px;
     }
-  
   }
   
