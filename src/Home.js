@@ -123,12 +123,14 @@ const Home = () => {
     <div className="home">
       <div className="home-form">
         <form onSubmit={handleSubmit}>
-          <label>House cost</label>
+          <label>Cost of the house</label>
           <input
             type="number"
             required
             value={houseCost}
-            onChange={(e) => setHouseCost(e.target.value)}
+            onChange={(e) => {
+              setHouseCost(e.target.value.replace(/\D/, ""));
+            }}
             id="feedback-phone"
           />
           <label>Down payment</label>
@@ -136,80 +138,110 @@ const Home = () => {
             type="number"
             required
             value={downPayment}
-            onChange={(e) => setDownpayment(e.target.value)}
+            onChange={(e) => setDownpayment(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>Mortgage percentage</label>
           <input
             type="number"
             required
             value={mortgagePercentage}
-            onChange={(e) => setMortgagePercentage(e.target.value)}
+            onChange={(e) =>
+              setMortgagePercentage(e.target.value.replace(/\D/, ""))
+            }
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>Loan term</label>
           <input
             type="number"
             required
             value={mortgageYears}
-            onChange={(e) => setMortgageYears(e.target.value)}
+            onChange={(e) => setMortgageYears(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>HOA per month</label>
           <input
             type="number"
             required
             value={hoa}
-            onChange={(e) => setHOA(e.target.value)}
+            onChange={(e) => setHOA(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>Tax percentage per year</label>
           <input
             type="number"
             required
             value={taxPercentage}
-            onChange={(e) => setTaxPercentage(e.target.value)}
+            onChange={(e) => setTaxPercentage(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>House Insurance per month</label>
           <input
             type="number"
             required
             value={houseInsurancePerMonth}
-            onChange={(e) => setHouseInsurancePerMonth(e.target.value)}
+            onChange={(e) =>
+              setHouseInsurancePerMonth(e.target.value.replace(/\D/, ""))
+            }
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>Desired years to finish mortgage</label>
           <input
             type="number"
             required
             value={yearsToFinishMortgage}
-            onChange={(e) => setYearsToFinishMortgage(e.target.value)}
+            onChange={(e) =>
+              setYearsToFinishMortgage(e.target.value.replace(/\D/, ""))
+            }
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
-          <label>Investable amount per month</label>
+          <label>Amount you invest every month</label>
           <input
             type="number"
             required
             value={investableAmountPerMonth}
-            onChange={(e) => setInvestableAmountPerMonth(e.target.value)}
+            onChange={(e) =>
+              setInvestableAmountPerMonth(e.target.value.replace(/\D/, ""))
+            }
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <label>Investment interest percentage per annum</label>
           <input
             type="number"
             required
             value={investmentInterest}
-            onChange={(e) => setInvestmentInterest(e.target.value)}
+            onChange={(e) =>
+              setInvestmentInterest(e.target.value.replace(/\D/, ""))
+            }
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min={0}
           />
           <label>Rent per month</label>
           <input
             type="number"
             required
             value={currentRent}
-            onChange={(e) => setCurrentRent(e.target.value)}
+            onChange={(e) => setCurrentRent(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
+            onkeypress="return event.charCode >= 48"
+            min="0"
           />
           <button>Calculate</button>
         </form>
@@ -237,11 +269,19 @@ const Home = () => {
         </div>
         <div className="value-cell">
           <h3>Investment value with house</h3>
-          <p>{numberWithCommas(Math.ceil(investmentValueWithHouse))}</p>
+          <p>
+            {investmentValueWithHouse > 0
+              ? numberWithCommas(Math.ceil(investmentValueWithHouse))
+              : "cannot invest"}
+          </p>
         </div>
         <div className="value-cell">
           <h3>Desired House value in future</h3>
-          <p>{numberWithCommas(Math.ceil(desiredHouseValueInFuture))}</p>
+          <p>
+            {investmentValueWithHouse > 0
+              ? numberWithCommas(Math.ceil(desiredHouseValueInFuture))
+              : "cannot invest"}
+          </p>
         </div>
       </div>
     </div>
