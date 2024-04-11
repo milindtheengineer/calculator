@@ -1,31 +1,31 @@
 import { useState } from "react";
 import "./form.css";
 import "./output.css";
+import Collapsible from "react-collapsible";
 
 const Home = () => {
-  const [houseCost, setHouseCost] = useState("");
-  const [downPayment, setDownpayment] = useState("");
-  const [mortgagePercentage, setMortgagePercentage] = useState("");
-  const [hoa, setHOA] = useState("");
-  const [taxPercentage, setTaxPercentage] = useState("");
-  const [houseInsurancePerMonth, setHouseInsurancePerMonth] = useState("");
-  const [mortgageYears, setMortgageYears] = useState("");
-  const [investableAmountPerMonth, setInvestableAmountPerMonth] = useState("");
-  const [currentRent, setCurrentRent] = useState("");
-  const [investmentInterest, setInvestmentInterest] = useState("");
+  const [houseCost, setHouseCost] = useState(0);
+  const [downPayment, setDownpayment] = useState(0);
+  const [mortgagePercentage, setMortgagePercentage] = useState(0);
+  const [hoa, setHOA] = useState(0);
+  const [taxPercentage, setTaxPercentage] = useState(0);
+  const [houseInsurancePerMonth, setHouseInsurancePerMonth] = useState(0);
+  const [mortgageYears, setMortgageYears] = useState(0);
+  const [investableAmountPerMonth, setInvestableAmountPerMonth] = useState(0);
+  const [currentRent, setCurrentRent] = useState(0);
+  const [investmentInterest, setInvestmentInterest] = useState(0);
   ////
-  const [mortgagePerMonth, setMortgagePerMonth] = useState("");
-  const [totalCostPerMonth, setTotalCostPerMonth] = useState("");
-  const [yearsToFinishMortgage, setYearsToFinishMortgage] = useState("");
+  const [mortgagePerMonth, setMortgagePerMonth] = useState(0);
+  const [totalCostPerMonth, setTotalCostPerMonth] = useState(0);
+  const [yearsToFinishMortgage, setYearsToFinishMortgage] = useState(0);
   const [extraAmountToPayEveryMonth, setExtraAmountToPayEveryMonth] =
-    useState("");
+    useState(0);
   const [totalExtraAmountToPayEveryMonth, setTotalExtraAmountToPayEveryMonth] =
-    useState("");
+    useState(0);
   const [investmentValueWithNoHouse, setInvestmentValueWithNoHouse] =
-    useState("");
-  const [investmentValueWithHouse, setInvestmentValueWithHouse] = useState("");
-  const [desiredHouseValueInFuture, setDesiredHouseValueInFuture] =
-    useState("");
+    useState(0);
+  const [investmentValueWithHouse, setInvestmentValueWithHouse] = useState(0);
+  const [desiredHouseValueInFuture, setDesiredHouseValueInFuture] = useState(0);
   const calculateCompoundInterest = (
     principal,
     annualInterestRate,
@@ -132,6 +132,7 @@ const Home = () => {
               setHouseCost(e.target.value.replace(/\D/, ""));
             }}
             id="feedback-phone"
+            defaultValue={0}
           />
           <label>Down payment</label>
           <input
@@ -140,20 +141,16 @@ const Home = () => {
             value={downPayment}
             onChange={(e) => setDownpayment(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
+            defaultValue={0}
           />
           <label>Mortgage percentage</label>
           <input
             type="number"
             required
             value={mortgagePercentage}
-            onChange={(e) =>
-              setMortgagePercentage(e.target.value.replace(/\D/, ""))
-            }
+            onChange={(e) => setMortgagePercentage(e.target.value)}
             id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
+            defaultValue={0}
           />
           <label>Loan term</label>
           <input
@@ -162,87 +159,83 @@ const Home = () => {
             value={mortgageYears}
             onChange={(e) => setMortgageYears(e.target.value.replace(/\D/, ""))}
             id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
+            defaultValue={0}
           />
-          <label>HOA per month</label>
-          <input
-            type="number"
-            required
-            value={hoa}
-            onChange={(e) => setHOA(e.target.value.replace(/\D/, ""))}
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
-          />
-          <label>Tax percentage per year</label>
-          <input
-            type="number"
-            required
-            value={taxPercentage}
-            onChange={(e) => setTaxPercentage(e.target.value.replace(/\D/, ""))}
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
-          />
-          <label>House Insurance per month</label>
-          <input
-            type="number"
-            required
-            value={houseInsurancePerMonth}
-            onChange={(e) =>
-              setHouseInsurancePerMonth(e.target.value.replace(/\D/, ""))
-            }
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
-          />
-          <label>Desired years to finish mortgage</label>
-          <input
-            type="number"
-            required
-            value={yearsToFinishMortgage}
-            onChange={(e) =>
-              setYearsToFinishMortgage(e.target.value.replace(/\D/, ""))
-            }
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
-          />
-          <label>Amount you invest every month</label>
-          <input
-            type="number"
-            required
-            value={investableAmountPerMonth}
-            onChange={(e) =>
-              setInvestableAmountPerMonth(e.target.value.replace(/\D/, ""))
-            }
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
-          />
-          <label>Investment interest percentage per annum</label>
-          <input
-            type="number"
-            required
-            value={investmentInterest}
-            onChange={(e) =>
-              setInvestmentInterest(e.target.value.replace(/\D/, ""))
-            }
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min={0}
-          />
-          <label>Rent per month</label>
-          <input
-            type="number"
-            required
-            value={currentRent}
-            onChange={(e) => setCurrentRent(e.target.value.replace(/\D/, ""))}
-            id="feedback-phone"
-            onkeypress="return event.charCode >= 48"
-            min="0"
-          />
+          <Collapsible trigger="Taxes and fees" class="collapse">
+            <label>HOA per month</label>
+            <input
+              type="number"
+              required
+              value={hoa}
+              onChange={(e) => setHOA(e.target.value.replace(/\D/, ""))}
+              id="feedback-phone"
+              defaultValue={0}
+            />
+            <label>Tax percentage per year</label>
+            <input
+              type="number"
+              required
+              value={taxPercentage}
+              onChange={(e) => setTaxPercentage(e.target.value)}
+              id="feedback-phone"
+              defaultValue={0}
+            />
+            <label>House Insurance per month</label>
+            <input
+              type="number"
+              required
+              value={houseInsurancePerMonth}
+              onChange={(e) =>
+                setHouseInsurancePerMonth(e.target.value.replace(/\D/, ""))
+              }
+              id="feedback-phone"
+              defaultValue={0}
+            />
+          </Collapsible>
+          <Collapsible trigger="Investments" class="collapse">
+            <label>Desired years to finish mortgage</label>
+            <input
+              type="number"
+              required
+              value={yearsToFinishMortgage}
+              onChange={(e) =>
+                setYearsToFinishMortgage(e.target.value.replace(/\D/, ""))
+              }
+              id="feedback-phone"
+              defaultValue={0}
+            />
+            <label>Amount you invest every month</label>
+            <input
+              type="number"
+              required
+              value={investableAmountPerMonth}
+              onChange={(e) =>
+                setInvestableAmountPerMonth(e.target.value.replace(/\D/, ""))
+              }
+              id="feedback-phone"
+              defaultValue={0}
+            />
+            <label>Investment interest percentage per annum</label>
+            <input
+              type="number"
+              required
+              value={investmentInterest}
+              onChange={(e) =>
+                setInvestmentInterest(e.target.value.replace(/\D/, ""))
+              }
+              id="feedback-phone"
+              defaultValue={0}
+            />
+            <label>Rent per month</label>
+            <input
+              type="number"
+              required
+              value={currentRent}
+              onChange={(e) => setCurrentRent(e.target.value.replace(/\D/, ""))}
+              id="feedback-phone"
+              defaultValue={0}
+            />
+          </Collapsible>
           <button>Calculate</button>
         </form>
       </div>
@@ -257,15 +250,27 @@ const Home = () => {
         </div>
         <div className="value-cell">
           <h3>Extra Payment Per Month</h3>
-          <p>{numberWithCommas(Math.ceil(extraAmountToPayEveryMonth))}</p>
+          <p>
+            {extraAmountToPayEveryMonth != Infinity
+              ? numberWithCommas(Math.ceil(extraAmountToPayEveryMonth))
+              : "Not enough data"}
+          </p>
         </div>
         <div className="value-cell">
           <h3>Total Extra Payment Per Month</h3>
-          <p>{numberWithCommas(Math.ceil(totalExtraAmountToPayEveryMonth))}</p>
+          <p>
+            {totalExtraAmountToPayEveryMonth != Infinity
+              ? numberWithCommas(Math.ceil(totalExtraAmountToPayEveryMonth))
+              : "Not enough data"}
+          </p>
         </div>
         <div className="value-cell">
           <h3>Investment value without house</h3>
-          <p>{numberWithCommas(Math.ceil(investmentValueWithNoHouse))}</p>
+          <p>
+            {investmentValueWithNoHouse != Infinity
+              ? numberWithCommas(Math.ceil(investmentValueWithNoHouse))
+              : "Not enough data"}
+          </p>
         </div>
         <div className="value-cell">
           <h3>Investment value with house</h3>
