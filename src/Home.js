@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./form.css";
 
 const Home = () => {
   const [houseCost, setHouseCost] = useState(0);
@@ -7,6 +8,7 @@ const Home = () => {
   const [hoa, setHOA] = useState(0);
   const [taxPercentage, setTaxPercentage] = useState(0);
   const [houseInsurancePerMonth, setHouseInsurancePerMonth] = useState(0);
+  const [mortgageYears, setMortgageYears] = useState(0);
   const [investableAmountPerMonth, setInvestableAmountPerMonth] = useState(0);
   const [currentRent, setCurrentRent] = useState(0);
   const [investmentInterest, setInvestmentInterest] = useState(0);
@@ -21,12 +23,13 @@ const Home = () => {
   const [investmentValueWithNoHouse, setInvestmentValueWithNoHouse] =
     useState(0);
   const [investmentValueWithHouse, setInvestmentValueWithHouse] = useState(0);
-  function calculateCompoundInterest(
+
+  const calculateCompoundInterest = (
     principal,
     annualInterestRate,
     monthlyPayment,
     years
-  ) {
+  ) => {
     let months = years * 12;
     let futureValue = principal;
     let annualInterestRateInDecimal = annualInterestRate / 100;
@@ -35,53 +38,54 @@ const Home = () => {
       futureValue += futureValue * (annualInterestRateInDecimal / 12);
     }
     return futureValue.toFixed(2);
-  }
+  };
 
-  // Example usage:
-  let principal = 10000; // initial amount
-  let annualInterestRate = 5; // annual interest rate in percentage
-  let monthlyPayment = 200; // monthly payment
-  let years = 5; // number of years
+  const calculateMortgagePerMonth = (
+    mortgagePercentage,
+    mortgageYears,
+    loanAmount
+  ) => {
+    let monthlyInterestRate = mortgagePercentage / (12 * 100);
+    let numberOfPayments = mortgageYears * 12;
 
-  let futureValue = calculateCompoundInterest(
-    principal,
-    annualInterestRate,
-    monthlyPayment,
-    years
-  );
-  console.log("Future value: $" + futureValue);
+    let numerator =
+      loanAmount *
+      (monthlyInterestRate *
+        Math.pow(1 + monthlyInterestRate, numberOfPayments));
+    let denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
+    return numerator / denominator;
+  };
+
+  const calculateExtraMonthlyPayment = (
+    yearsToFinishMortgage,
+    loanAmount,
+    mortgagePercentage
+  ) => {
+    let monthlyInterestRate = mortgagePercentage / (12 * 100);
+    let newTotalPayments = parseInt(yearsToFinishMortgage) * 12;
+    let newMonthlyPayment =
+      (loanAmount * monthlyInterestRate) /
+      (1 - Math.pow(1 + monthlyInterestRate, -newTotalPayments));
+    return newMonthlyPayment;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const paymentsPerYear = 12;
-    const monthlyInterestRate = mortgagePercentage / (paymentsPerYear * 100);
-    const numberOfPayments = 30 * paymentsPerYear;
-
-    const numerator =
-      (houseCost - downPayment) *
-      (monthlyInterestRate *
-        Math.pow(1 + monthlyInterestRate, numberOfPayments));
-    const denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
-    const mortgage = numerator / denominator;
+    const mortgage = calculateMortgagePerMonth(
+      parseFloat(mortgagePercentage),
+      parseInt(mortgageYears),
+      parseInt(houseCost) - parseInt(downPayment)
+    );
     setMortgagePerMonth(mortgage);
     const taxPerMonth = (houseCost * taxPercentage) / 1200;
-    console.log(
-      "tax",
-      mortgage,
-      houseCost,
-      taxPercentage,
-      hoa,
-      houseInsurancePerMonth,
-      taxPerMonth
-    );
     setTotalCostPerMonth(
       mortgage + taxPerMonth + parseInt(hoa) + parseInt(houseInsurancePerMonth)
     );
-    const newTotalPayments = parseInt(yearsToFinishMortgage) * 12;
-    const newMonthlyPayment =
-      ((houseCost - downPayment) * monthlyInterestRate) /
-      (1 - Math.pow(1 + monthlyInterestRate, -newTotalPayments));
-
+    const newMonthlyPayment = calculateExtraMonthlyPayment(
+      parseInt(yearsToFinishMortgage),
+      parseInt(houseCost) - parseInt(downPayment),
+      parseFloat(mortgagePercentage)
+    );
     // Calculate extra amount to pay each month
     setExtraAmountToPayEveryMonth(newMonthlyPayment - mortgage);
     const totalExtrapaymentToPayEveryMonth =
@@ -117,6 +121,7 @@ const Home = () => {
           required
           value={houseCost}
           onChange={(e) => setHouseCost(e.target.value)}
+          id="feedback-phone"
         />
         <label>Down payment</label>
         <input
@@ -124,6 +129,7 @@ const Home = () => {
           required
           value={downPayment}
           onChange={(e) => setDownpayment(e.target.value)}
+          id="feedback-phone"
         />
         <label>Mortgage percentage</label>
         <input
@@ -131,6 +137,15 @@ const Home = () => {
           required
           value={mortgagePercentage}
           onChange={(e) => setMortgagePercentage(e.target.value)}
+          id="feedback-phone"
+        />
+        <label>Mortgage years</label>
+        <input
+          type="number"
+          required
+          value={mortgageYears}
+          onChange={(e) => setMortgageYears(e.target.value)}
+          id="feedback-phone"
         />
         <label>HOA</label>
         <input
@@ -138,6 +153,7 @@ const Home = () => {
           required
           value={hoa}
           onChange={(e) => setHOA(e.target.value)}
+          id="feedback-phone"
         />
         <label>Tax percentage</label>
         <input
@@ -145,6 +161,7 @@ const Home = () => {
           required
           value={taxPercentage}
           onChange={(e) => setTaxPercentage(e.target.value)}
+          id="feedback-phone"
         />
         <label>House Insurance</label>
         <input
@@ -152,6 +169,7 @@ const Home = () => {
           required
           value={houseInsurancePerMonth}
           onChange={(e) => setHouseInsurancePerMonth(e.target.value)}
+          id="feedback-phone"
         />
         <label>Years to finish mortgage</label>
         <input
@@ -159,6 +177,7 @@ const Home = () => {
           required
           value={yearsToFinishMortgage}
           onChange={(e) => setYearsToFinishMortgage(e.target.value)}
+          id="feedback-phone"
         />
         <label>Investable amount per month</label>
         <input
@@ -166,6 +185,7 @@ const Home = () => {
           required
           value={investableAmountPerMonth}
           onChange={(e) => setInvestableAmountPerMonth(e.target.value)}
+          id="feedback-phone"
         />
         <label>Investment interest percentage</label>
         <input
@@ -173,6 +193,7 @@ const Home = () => {
           required
           value={investmentInterest}
           onChange={(e) => setInvestmentInterest(e.target.value)}
+          id="feedback-phone"
         />
         <label>Rent per month</label>
         <input
@@ -180,51 +201,24 @@ const Home = () => {
           required
           value={currentRent}
           onChange={(e) => setCurrentRent(e.target.value)}
+          id="feedback-phone"
         />
         <button>Calculate</button>
       </form>
-      <label>Mortgage per month</label>
-      <input
-        type="number"
-        required
-        value={mortgagePerMonth}
-        onChange={(e) => setMortgagePerMonth(e.target.value)}
-      />
-      <label>Total Payment Per Month</label>
-      <input
-        type="number"
-        required
-        value={totalCostPerMonth}
-        onChange={(e) => setTotalCostPerMonth(e.target.value)}
-      />
-      <label>Extra Payment Per Month</label>
-      <input
-        type="number"
-        required
-        value={extraAmountToPayEveryMonth}
-        onChange={(e) => setExtraAmountToPayEveryMonth(e.target.value)}
-      />
-      <label>Total Extra Payment Per Month</label>
-      <input
-        type="number"
-        required
-        value={totalExtraAmountToPayEveryMonth}
-        onChange={(e) => setTotalExtraAmountToPayEveryMonth(e.target.value)}
-      />
-      <label>Investment value without house</label>
-      <input
-        type="number"
-        required
-        value={investmentValueWithNoHouse}
-        onChange={(e) => setInvestmentValueWithNoHouse(e.target.value)}
-      />
-      <label>Investment value with house</label>
-      <input
-        type="number"
-        required
-        value={investmentValueWithHouse}
-        onChange={(e) => setInvestmentValueWithHouse(e.target.value)}
-      />
+      <div className="output">
+        <p>Mortgage per month</p>
+        <p>{mortgagePerMonth}</p>
+        <p>Total Payment Per Month</p>
+        <p>{totalCostPerMonth}</p>
+        <p>Extra Payment Per Month</p>
+        <p>{extraAmountToPayEveryMonth}</p>
+        <p>Total Extra Payment Per Month</p>
+        <p>{totalExtraAmountToPayEveryMonth}</p>
+        <p>Investment value without house</p>
+        <p>{investmentValueWithNoHouse}</p>
+        <p>Investment value with house</p>
+        <p>{investmentValueWithHouse}</p>
+      </div>
     </div>
   );
 };
