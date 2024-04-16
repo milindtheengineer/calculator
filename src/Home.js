@@ -193,7 +193,7 @@ const Home = () => {
             />
           </Collapsible>
           <Collapsible trigger="Investments" class="collapse">
-            <label>Desired years to finish mortgage</label>
+            <label>Desired number of years to repay mortgage</label>
             <input
               type="number"
               required
@@ -204,7 +204,7 @@ const Home = () => {
               id="feedback-phone"
               defaultValue={0}
             />
-            <label>Amount you invest every month</label>
+            <label>Amount you save or invest every month</label>
             <input
               type="number"
               required
@@ -215,7 +215,7 @@ const Home = () => {
               id="feedback-phone"
               defaultValue={0}
             />
-            <label>Investment interest percentage per annum</label>
+            <label>Expected investment interest percentage per annum</label>
             <input
               type="number"
               required
@@ -226,7 +226,7 @@ const Home = () => {
               id="feedback-phone"
               defaultValue={0}
             />
-            <label>Rent per month</label>
+            <label>Rent you pay per month</label>
             <input
               type="number"
               required
