@@ -4,9 +4,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <h1>Mortgage/Investment Calculator</h1>
-      <div className="links">
-        <Link to="/about">About</Link>
-      </div>
     </nav>
   );
 };
