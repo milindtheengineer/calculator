@@ -249,7 +249,7 @@ const Home = () => {
           <p>{numberWithCommas(Math.ceil(totalCostPerMonth))}</p>
         </div>
         <div className="value-cell">
-          <h3>Extra Payment Per Month</h3>
+          <h3>Payment per month to finish mortgage early</h3>
           <p>
             {extraAmountToPayEveryMonth != Infinity
               ? numberWithCommas(Math.ceil(extraAmountToPayEveryMonth))
@@ -257,7 +257,10 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Total Extra Payment Per Month</h3>
+          <h3>
+            Total payment per month to finish mortgage early including taxes and
+            fees
+          </h3>
           <p>
             {totalExtraAmountToPayEveryMonth != Infinity
               ? numberWithCommas(Math.ceil(totalExtraAmountToPayEveryMonth))
@@ -265,7 +268,7 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Investment value without house</h3>
+          <h3>Net worth if you don't get the house</h3>
           <p>
             {investmentValueWithNoHouse != Infinity
               ? numberWithCommas(Math.ceil(investmentValueWithNoHouse))
@@ -273,7 +276,7 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Investment value with house</h3>
+          <h3>Net worth if you get the house without house vaulation</h3>
           <p>
             {investmentValueWithHouse > 0
               ? numberWithCommas(Math.ceil(investmentValueWithHouse))
@@ -281,7 +284,9 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Desired House value in future</h3>
+          <h3>
+            Minimum future valuation of the house to equal a no-house investment
+          </h3>
           <p>
             {investmentValueWithHouse > 0
               ? numberWithCommas(Math.ceil(desiredHouseValueInFuture))
