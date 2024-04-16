@@ -276,10 +276,11 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Net worth if you get the house without house vaulation</h3>
+          <h3>Net worth if you get the house</h3>
           <p>
             {investmentValueWithHouse > 0
-              ? numberWithCommas(Math.ceil(investmentValueWithHouse))
+              ? numberWithCommas(Math.ceil(investmentValueWithHouse)) +
+                "+ valuation of the house"
               : "cannot invest"}
           </p>
         </div>
