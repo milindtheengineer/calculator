@@ -245,11 +245,11 @@ const Home = () => {
           <p>{numberWithCommas(Math.ceil(mortgagePerMonth))}</p>
         </div>
         <div className="value-cell">
-          <h3>Total Payment Per Month</h3>
+          <h3>Total Payment Per Month including taxes and fees</h3>
           <p>{numberWithCommas(Math.ceil(totalCostPerMonth))}</p>
         </div>
         <div className="value-cell">
-          <h3>Payment per month to finish mortgage early</h3>
+          <h3>Extra payment per month to finish mortgage early</h3>
           <p>
             {extraAmountToPayEveryMonth != Infinity
               ? numberWithCommas(Math.ceil(extraAmountToPayEveryMonth))
@@ -258,8 +258,8 @@ const Home = () => {
         </div>
         <div className="value-cell">
           <h3>
-            Total payment per month to finish mortgage early including taxes and
-            fees
+            Total payment per month to finish mortgage early including mortgage,
+            taxes and fees
           </h3>
           <p>
             {totalExtraAmountToPayEveryMonth != Infinity
@@ -280,7 +280,7 @@ const Home = () => {
           <p>
             {investmentValueWithHouse > 0
               ? numberWithCommas(Math.ceil(investmentValueWithHouse)) +
-                "+ valuation of the house"
+                " + valuation of the house"
               : "cannot invest"}
           </p>
         </div>
