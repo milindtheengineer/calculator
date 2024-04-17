@@ -204,7 +204,7 @@ const Home = () => {
             />
           </Collapsible>
           <Collapsible
-            trigger="Investments if you don't own a house and rent"
+            trigger="Rent expense and investments if you don't own a house"
             class="collapse"
           >
             <label>Rent you pay per month currently</label>
@@ -297,8 +297,8 @@ const Home = () => {
         </div>
         <div className="value-cell">
           <h3>
-            Minimum future valuation of the house to equal a no-house investment
-            in {yearsToFinishMortgage} years
+            The valuation of the house in {yearsToFinishMortgage} years to match
+            a no-house investment
           </h3>
           <p>
             {investmentValueWithHouse > 0
