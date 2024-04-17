@@ -161,6 +161,17 @@ const Home = () => {
             id="feedback-phone"
             defaultValue={0}
           />
+          <label>Number of years you want to pay off the mortgage</label>
+          <input
+            type="number"
+            required
+            value={yearsToFinishMortgage}
+            onChange={(e) =>
+              setYearsToFinishMortgage(e.target.value.replace(/\D/, ""))
+            }
+            id="feedback-phone"
+            defaultValue={0}
+          />
           <Collapsible trigger="Taxes and fees" class="collapse">
             <label>HOA per month</label>
             <input
@@ -192,19 +203,20 @@ const Home = () => {
               defaultValue={0}
             />
           </Collapsible>
-          <Collapsible trigger="Investments" class="collapse">
-            <label>Desired number of years to repay mortgage</label>
+          <Collapsible
+            trigger="Investments if you don't own a house and rent"
+            class="collapse"
+          >
+            <label>Rent you pay per month currently</label>
             <input
               type="number"
               required
-              value={yearsToFinishMortgage}
-              onChange={(e) =>
-                setYearsToFinishMortgage(e.target.value.replace(/\D/, ""))
-              }
+              value={currentRent}
+              onChange={(e) => setCurrentRent(e.target.value.replace(/\D/, ""))}
               id="feedback-phone"
               defaultValue={0}
             />
-            <label>Amount you save or invest every month</label>
+            <label>Amount you currently save or invest every month</label>
             <input
               type="number"
               required
@@ -226,15 +238,6 @@ const Home = () => {
               id="feedback-phone"
               defaultValue={0}
             />
-            <label>Rent you pay per month</label>
-            <input
-              type="number"
-              required
-              value={currentRent}
-              onChange={(e) => setCurrentRent(e.target.value.replace(/\D/, ""))}
-              id="feedback-phone"
-              defaultValue={0}
-            />
           </Collapsible>
           <button>Calculate</button>
         </form>
@@ -249,7 +252,10 @@ const Home = () => {
           <p>{numberWithCommas(Math.ceil(totalCostPerMonth))}</p>
         </div>
         <div className="value-cell">
-          <h3>Extra payment per month to finish mortgage early</h3>
+          <h3>
+            Extra payment per month to finish mortgage in{" "}
+            {yearsToFinishMortgage} years
+          </h3>
           <p>
             {extraAmountToPayEveryMonth != Infinity
               ? numberWithCommas(Math.ceil(extraAmountToPayEveryMonth))
@@ -259,7 +265,7 @@ const Home = () => {
         <div className="value-cell">
           <h3>
             Total payment per month to finish mortgage early including mortgage,
-            taxes and fees
+            taxes and fees in {yearsToFinishMortgage} years
           </h3>
           <p>
             {totalExtraAmountToPayEveryMonth != Infinity
@@ -268,7 +274,10 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Net worth if you don't get the house</h3>
+          <h3>
+            Net worth if you don't get the house in {yearsToFinishMortgage}{" "}
+            years
+          </h3>
           <p>
             {investmentValueWithNoHouse != Infinity
               ? numberWithCommas(Math.ceil(investmentValueWithNoHouse))
@@ -276,7 +285,9 @@ const Home = () => {
           </p>
         </div>
         <div className="value-cell">
-          <h3>Net worth if you get the house</h3>
+          <h3>
+            Net worth if you get the house in {yearsToFinishMortgage} years
+          </h3>
           <p>
             {investmentValueWithHouse > 0
               ? numberWithCommas(Math.ceil(investmentValueWithHouse)) +
@@ -287,6 +298,7 @@ const Home = () => {
         <div className="value-cell">
           <h3>
             Minimum future valuation of the house to equal a no-house investment
+            in {yearsToFinishMortgage} years
           </h3>
           <p>
             {investmentValueWithHouse > 0
